@@ -11,6 +11,22 @@
 
 ---
 
+## Product Preview
+
+### Script Intake
+![ScenePilot AI homepage and screenplay upload](docs/images/scenepilot-home.png)
+
+### Production Analysis
+![ScenePilot AI completed production analysis](docs/images/production-analysis.png)
+
+### Agentic Production Desk
+![ScenePilot AI agentic production desk](docs/images/agentic-production-desk.png)
+
+### Production Recovery
+![ScenePilot AI production recovery workflow](docs/images/production-recovery.png)
+
+---
+
 ## The Problem
 
 Film and television pre-production requires directors and production teams to manually turn scripts into scene breakdowns, continuity notes, risk assessments, and shooting schedules. These decisions are interconnected, and a last-minute disruption can force several departments to re-plan at once.

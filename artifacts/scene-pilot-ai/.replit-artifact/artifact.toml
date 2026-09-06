@@ -12,7 +12,7 @@ paths = [ "/" ]
 localPort = 23917
 
 [services.development]
-run = "python app.py"
+run = "python sdk_runtime.py"
 
 [services.production]
 
@@ -20,7 +20,7 @@ run = "python app.py"
 args = ["python", "-m", "compileall", "."]
 
 [services.production.run]
-args = ["python", "app.py"]
+args = ["python", "sdk_runtime.py"]
 
 [services.production.run.env]
 PORT = "23917"

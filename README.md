@@ -54,18 +54,19 @@ The system also includes **Production Recovery**: when something changes during 
 ```mermaid
 flowchart LR
     A[Screenplay Upload] --> B[Flask Application]
-    B --> C[Gemini Analysis]
-    C --> D[Director Agent]
-    C --> E[Continuity Agent]
-    C --> F[Production Risk Agent]
-    C --> G[Scheduling Agent]
-    D --> H[Director Decision]
-    E --> H
-    F --> H
-    G --> H
-    H --> I[Production Plan]
-    I --> J[Production Recovery]
-    J --> C
+    B --> C[Google Gen AI SDK]
+    C --> D[Gemini]
+    D --> E[Director Agent]
+    D --> F[Continuity Agent]
+    D --> G[Production Risk Agent]
+    D --> H[Scheduling Agent]
+    E --> I[Director Decision]
+    F --> I
+    G --> I
+    H --> I
+    I --> J[Production Plan]
+    J --> K[Production Recovery]
+    K --> C
 ```
 
 ### 1. Script Intake
@@ -80,6 +81,12 @@ Four specialist AI perspectives review the screenplay from different production 
 ### 4. Production Recovery
 A production team can enter a real-world disruption. ScenePilot identifies affected scenes, re-evaluates production constraints, and produces a recovery plan rather than requiring the team to rebuild the schedule manually.
 
+## Google AI Runtime
+
+ScenePilot's deployed runtime uses the official **Google Gen AI SDK (`google-genai`)** to call Gemini. The `sdk_runtime.py` entry point adapts the existing Flask workflows so `/analyze` and `/replan` make their model requests through `client.models.generate_content(...)` at runtime.
+
+The Gemini API key is read from the `GEMINI_API_KEY` environment variable and is never exposed to the frontend.
+
 ## Example: *Night Shift*
 
 The included demonstration screenplay contains an interior and exterior coffee-shop sequence during heavy rain and a power outage. ScenePilot identifies the screenplay's thriller tone, maps its scenes and production requirements, flags risks such as wet-weather electrical equipment and continuity challenges, and recommends a shooting strategy across the specialist agents.
@@ -87,10 +94,11 @@ The included demonstration screenplay contains an interior and exterior coffee-s
 ## Technology
 
 - **Gemini** — screenplay reasoning, structured production analysis, agent perspectives, and recovery planning
+- **Google Gen AI SDK (`google-genai`)** — official runtime SDK used for Gemini model calls
 - **Flask / Python** — application backend and AI orchestration endpoints
 - **JavaScript** — interactive screenplay upload, analysis, and recovery workflow
 - **HTML + CSS** — cinematic production interface
-- **Replit** — development workflow and public deployment for the Replit partner track
+- **Replit Agent + Replit Deployments** — development workflow and public deployment for the Replit partner track
 
 ## Repository Structure
 
@@ -99,6 +107,7 @@ The working ScenePilot Flask application is located at:
 ```text
 artifacts/scene-pilot-ai/
 ├── app.py
+├── sdk_runtime.py
 ├── requirements.txt
 ├── templates/
 │   └── index.html
@@ -109,6 +118,8 @@ artifacts/scene-pilot-ai/
 └── .replit-artifact/
     └── artifact.toml
 ```
+
+`app.py` contains the Flask routes, prompts, response normalization, and production workflows. `sdk_runtime.py` is the deployed entry point and performs the actual Gemini calls through the official Google Gen AI SDK.
 
 The repository also contains Replit-generated workspace/scaffold files used during development. The directory above contains the core hackathon application.
 
@@ -145,7 +156,7 @@ export GEMINI_API_KEY="YOUR_API_KEY"
 ### 5. Start ScenePilot
 
 ```bash
-python app.py
+python sdk_runtime.py
 ```
 
 Open the local URL displayed by Flask in your browser.
@@ -153,8 +164,8 @@ Open the local URL displayed by Flask in your browser.
 ## API Routes
 
 - `GET /` — ScenePilot production workspace
-- `POST /analyze` — analyzes the uploaded screenplay and generates the production plan
-- `POST /replan` — evaluates a production disruption and generates a recovery strategy
+- `POST /analyze` — analyzes the uploaded screenplay and generates the production plan through Gemini
+- `POST /replan` — evaluates a production disruption and generates a recovery strategy through Gemini
 
 ## Security
 

@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0a0c0f">
+    <meta name="description" content="ScenePilot AI — an autonomous pre-production director for film and television teams.">
+    <title>ScenePilot AI — AI Pre-Production Command Center</title>
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='favicon.svg') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="/" aria-label="ScenePilot AI home" data-testid="link-home">
+          <span class="brand-mark" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </span>
+          <span class="brand-wordmark">ScenePilot <b>AI</b></span>
+        </a>
+
+        <div class="topbar-meta">
+          <span class="system-status"><span class="status-dot"></span>Production systems online</span>
+          <span class="avatar-badge" aria-label="ScenePilot workspace">SP</span>
+        </div>
+      </header>
+
+      <div class="workspace">
+        <aside class="sidebar" aria-label="Primary navigation">
+          <div class="sidebar-intro">
+            <span class="eyebrow">Pre-production suite</span>
+            <p class="workspace-name">ScenePilot AI</p>
+            <span class="workspace-id">Production Workspace</span>
+          </div>
+
+          <nav class="nav-list">
+            <a class="nav-item is-active" href="#intake" data-testid="link-intake">
+              <span class="nav-icon" aria-hidden="true">
+                <svg viewBox="0 0 20 20" fill="none"><path d="M4 4.75A1.75 1.75 0 0 1 5.75 3h8.5A1.75 1.75 0 0 1 16 4.75v10.5A1.75 1.75 0 0 1 14.25 17h-8.5A1.75 1.75 0 0 1 4 15.25V4.75Z" stroke="currentColor" stroke-width="1.4"/><path d="M7 7h6M7 10h6M7 13h3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+              </span>
+              <span>Script intake</span>
+              <span class="nav-index">01</span>
+            </a>
+            <a class="nav-item" href="#analysis" data-testid="link-analysis">
+              <span class="nav-icon" aria-hidden="true">
+                <svg viewBox="0 0 20 20" fill="none"><path d="M3.5 14.8 7.1 11l2.65 2.4 6.75-7.2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M13.2 6.2h3.3v3.3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              <span>Production Analysis</span>
+              <span class="nav-lock">locked</span>
+            </a>
+            <a class="nav-item" href="#breakdown" data-testid="link-breakdown">
+              <span class="nav-icon" aria-hidden="true">
+                <svg viewBox="0 0 20 20" fill="none"><path d="M4 5.5h12M4 10h12M4 14.5h7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+              </span>
+              <span>Scene breakdown</span>
+              <span class="nav-lock">locked</span>
+            </a>
+          </nav>
+
+          <div class="sidebar-footer">
+            <div class="protocol-card">
+              <span class="protocol-mark">SP</span>
+              <div>
+                <span class="protocol-label">AI crew status</span>
+                <span class="protocol-value">4 Agents Online</span>
+              </div>
+              <span class="signal-bars" aria-label="Signal strength: high"><i></i><i></i><i></i></span>
+            </div>
+            <p class="sidebar-caption">Your script stays in this workspace until you choose to export it.</p>
+          </div>
+        </aside>
+
+        <main class="main-content">
+          <section class="intake-layout" id="intake">
+            <div class="hero-copy">
+              <div class="section-kicker"><span class="kicker-line"></span>SCRIPT INTAKE <span class="kicker-number">01 / 04</span></div>
+              <h1>ScenePilot <em>AI</em></h1>
+              <p class="hero-subtitle">Autonomous AI Pre-Production Director</p>
+              <p class="hero-description">Turn a screenplay into a shoot-ready production brief. ScenePilot maps scenes, continuity, risk, scheduling, and recovery decisions before the first camera rolls.</p>
+
+              <div class="scope-note">
+                <span class="scope-icon" aria-hidden="true">
+                  <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="6.5" stroke="currentColor" stroke-width="1.25"/><path d="M10 6.6v3.8l2.5 1.55" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/></svg>
+                </span>
+                <span><b>Built for directors, producers, ADs and production teams.</b><br>From first read to a clear shooting strategy.</span>
+              </div>
+            </div>
+
+            <div class="upload-panel">
+              <div class="panel-header">
+                <div>
+                  <span class="panel-label">Screenplay source</span>
+                  <h2>Bring the pages in.</h2>
+                </div>
+                <span class="file-count">PDF / TXT</span>
+              </div>
+
+              <input class="visually-hidden" type="file" id="screenplay-file" name="screenplay" accept=".pdf,.txt,application/pdf,text/plain" data-testid="input-screenplay">
+              <label class="dropzone" for="screenplay-file" id="dropzone" data-testid="dropzone-screenplay">
+                <span class="dropzone-corner corner-tl"></span><span class="dropzone-corner corner-tr"></span><span class="dropzone-corner corner-bl"></span><span class="dropzone-corner corner-br"></span>
+                <span class="upload-glyph" aria-hidden="true">
+                  <svg viewBox="0 0 32 32" fill="none"><path d="M16 21V7m0 0-5 5m5-5 5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 19.5v3A2.5 2.5 0 0 0 10.5 25h11a2.5 2.5 0 0 0 2.5-2.5v-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </span>
+                <span class="dropzone-title" id="dropzone-title">Drop your screenplay here</span>
+                <span class="dropzone-hint" id="dropzone-hint">or <u>browse from your computer</u></span>
+                <span class="dropzone-formats">PDF or TXT · max 25 MB</span>
+              </label>
+
+              <div class="selected-file" id="selected-file" hidden>
+                <span class="document-icon" aria-hidden="true">
+                  <svg viewBox="0 0 20 20" fill="none"><path d="M5 2.75h6.1L15 6.65v10.6H5V2.75Z" stroke="currentColor" stroke-width="1.2"/><path d="M11 2.8v4h3.8M7.5 10h5M7.5 12.6h5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+                </span>
+                <span class="file-details"><strong id="file-name">screenplay.pdf</strong><small id="file-size">0 KB</small></span>
+                <button class="remove-file" type="button" aria-label="Remove selected screenplay" id="remove-file" data-testid="button-remove-file">Remove</button>
+              </div>
+
+              <div class="upload-actions">
+                <span class="secure-note"><span class="mini-lock" aria-hidden="true">·</span> Private workspace</span>
+                <button class="primary-button" type="button" id="analyze-button" disabled data-testid="button-analyze">Analyze Screenplay <span class="button-arrow" aria-hidden="true">↗</span></button>
+              </div>
+              <p class="form-message" id="form-message" role="status" aria-live="polite"></p>
+            </div>
+          </section>
+
+          <section class="analysis-section" id="analysis">
+            <div class="analysis-heading">
+              <div>
+                <div class="section-kicker"><span class="kicker-line"></span>PRODUCTION BREAKDOWN <span class="kicker-number">02 / 04</span></div>
+                <h2>Production Analysis</h2>
+              </div>
+              <span class="analysis-state"><span class="state-dot"></span>Awaiting screenplay</span>
+            </div>
+
+            <div class="analysis-grid">
+              <article class="analysis-card analysis-card-wide">
+                <div class="card-topline"><span class="card-number">A1</span><span class="card-status">queued</span></div>
+                <div class="card-art art-signal" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><i></i></div>
+                <h3>Story signal</h3>
+                <p id="story-signal-summary">Theme, tone, and the dramatic engine of the piece.</p>
+                <div class="card-metrics" id="story-signal-metrics" hidden></div>
+                <div class="card-footer"><span>Waiting for source</span><span class="tiny-arrow">↗</span></div>
+              </article>
+              <article class="analysis-card">
+                <div class="card-topline"><span class="card-number">A2</span><span class="card-status">queued</span></div>
+                <div class="card-art art-scenes" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+                <h3>Scene architecture</h3>
+                <p id="scene-architecture-summary">Location, day/night, and page rhythm at a glance.</p>
+                <div class="card-metrics" id="scene-architecture-metrics" hidden></div>
+                <div class="card-footer"><span>Waiting for source</span><span class="tiny-arrow">↗</span></div>
+              </article>
+              <article class="analysis-card">
+                <div class="card-topline"><span class="card-number">A3</span><span class="card-status">queued</span></div>
+                <div class="card-art art-budget" aria-hidden="true"><span>$</span><i></i></div>
+                <h3>Production pressure</h3>
+                <p id="production-pressure-summary">Complexity, risk, and the pages that need a closer look.</p>
+                <div class="card-metrics" id="production-pressure-metrics" hidden></div>
+                <div class="card-footer"><span>Waiting for source</span><span class="tiny-arrow">↗</span></div>
+              </article>
+            </div>
+
+            <div class="analysis-results" id="analysis-results" hidden>
+              <div class="results-header">
+                <div>
+                  <span class="panel-label">Analysis report</span>
+                  <h3 id="analysis-title">Screenplay analysis</h3>
+                </div>
+                <span class="results-meta" id="analysis-meta"></span>
+              </div>
+              <div class="scene-list" id="scene-list"></div>
+            </div>
+          </section>
+
+          <section class="agentic-section" id="agentic-workflow" hidden>
+            <div class="analysis-heading">
+              <div>
+                <div class="section-kicker"><span class="kicker-line"></span>AI PRODUCTION CREW <span class="kicker-number">03 / 04</span></div>
+                <h2>Agentic Production Desk</h2>
+              </div>
+              <span class="analysis-state"><span class="state-dot"></span>Coordinated review</span>
+            </div>
+            <p class="agentic-intro">Four specialist AI agents review the same screenplay, then converge into one director-ready production decision.</p>
+
+            <div class="agent-grid">
+              <article class="agent-card" id="director-agent">
+                <div class="agent-card-topline"><span class="card-number">B1</span><span class="agent-label">Director Agent</span></div>
+                <h3>Production priorities</h3>
+                <p class="agent-summary"></p>
+                <div class="agent-points"></div>
+              </article>
+              <article class="agent-card" id="continuity-agent">
+                <div class="agent-card-topline"><span class="card-number">B2</span><span class="agent-label">Continuity Agent</span></div>
+                <h3>Continuity watch</h3>
+                <p class="agent-summary"></p>
+                <div class="agent-points"></div>
+              </article>
+              <article class="agent-card" id="production-risk-agent">
+                <div class="agent-card-topline"><span class="card-number">B3</span><span class="agent-label">Production Risk Agent</span></div>
+                <h3>Risk register</h3>
+                <p class="agent-summary"></p>
+                <div class="agent-points"></div>
+              </article>
+              <article class="agent-card" id="scheduling-agent">
+                <div class="agent-card-topline"><span class="card-number">B4</span><span class="agent-label">Scheduling Agent</span></div>
+                <h3>Shooting order</h3>
+                <p class="agent-summary"></p>
+                <div class="agent-points"></div>
+              </article>
+              <article class="agent-card agent-card-decision" id="director-decision">
+                <div class="agent-card-topline"><span class="card-number">B5</span><span class="agent-label">Director Decision</span></div>
+                <h3>Unified production direction</h3>
+                <p class="agent-summary"></p>
+                <div class="agent-points"></div>
+              </article>
+            </div>
+          </section>
+
+          <section class="recovery-section" id="production-recovery" hidden>
+            <div class="analysis-heading">
+              <div>
+                <div class="section-kicker"><span class="kicker-line"></span>LIVE PRODUCTION CONTROL <span class="kicker-number">04 / 04</span></div>
+                <h2>Production Recovery</h2>
+              </div>
+              <span class="analysis-state"><span class="state-dot"></span>Awaiting disruption</span>
+            </div>
+            <p class="recovery-intro">When production changes, enter the disruption here. The AI crew will replan the shoot while protecting continuity, safety, and schedule.</p>
+
+            <div class="recovery-intake">
+              <label for="disruption-input">Production disruption</label>
+              <div class="recovery-input-row">
+                <input id="disruption-input" type="text" maxlength="500" placeholder="e.g. The night location is unavailable tomorrow.">
+                <button class="primary-button" type="button" id="replan-button">Replan Production <span class="button-arrow" aria-hidden="true">↗</span></button>
+              </div>
+              <p class="recovery-message" id="recovery-message" role="status" aria-live="polite"></p>
+            </div>
+
+            <div class="recovery-results" id="recovery-results" hidden>
+              <div class="results-header">
+                <div>
+                  <span class="panel-label">Recovery response</span>
+                  <h3 id="recovery-disruption-summary">Production disruption</h3>
+                </div>
+                <span class="results-meta" id="recovery-affected-scenes"></span>
+              </div>
+              <div class="recovery-grid">
+                <article class="agent-card recovery-card" id="recovery-director-agent">
+                  <div class="agent-card-topline"><span class="card-number">R1</span><span class="agent-label">Director Agent</span></div>
+                  <h3>Overall response</h3>
+                  <p class="recovery-card-copy" id="recovery-director-decision"></p>
+                  <div class="recovery-points" id="recovery-director-priorities"></div>
+                </article>
+                <article class="agent-card recovery-card" id="recovery-continuity-agent">
+                  <div class="agent-card-topline"><span class="card-number">R2</span><span class="agent-label">Continuity Agent</span></div>
+                  <h3>Continuity consequences</h3>
+                  <div class="recovery-points" id="recovery-continuity-issues"></div>
+                  <div class="recovery-points" id="recovery-continuity-recommendations"></div>
+                </article>
+                <article class="agent-card recovery-card" id="recovery-risk-agent">
+                  <div class="agent-card-topline"><span class="card-number">R3</span><span class="agent-label">Production Risk Agent</span></div>
+                  <h3>New risk picture</h3>
+                  <div class="recovery-points" id="recovery-risk-risks"></div>
+                  <div class="recovery-points" id="recovery-risk-mitigations"></div>
+                </article>
+                <article class="agent-card recovery-card" id="recovery-scheduling-agent">
+                  <div class="agent-card-topline"><span class="card-number">R4</span><span class="agent-label">Scheduling Agent</span></div>
+                  <h3>Revised shooting order</h3>
+                  <div class="recovery-points" id="recovery-scheduling-order"></div>
+                  <p class="recovery-card-copy" id="recovery-scheduling-rationale"></p>
+                </article>
+                <article class="agent-card agent-card-decision recovery-card" id="recovery-plan">
+                  <div class="agent-card-topline"><span class="card-number">R5</span><span class="agent-label">Recovery Plan</span></div>
+                  <h3>Final recovery decision</h3>
+                  <p class="recovery-card-copy" id="recovery-final-decision"></p>
+                  <div class="recovery-points" id="recovery-actions"></div>
+                </article>
+              </div>
+            </div>
+          </section>
+
+          <section class="next-section" id="breakdown">
+            <div class="next-rule"></div>
+            <div><span class="section-kicker"><span class="kicker-line"></span>PRODUCTION READY <span class="kicker-number">FINAL</span></span><h2>From screenplay to shooting strategy.</h2></div>
+            <p>ScenePilot gives the production team one clear view of the story, scene requirements, risks, continuity, shooting order, and recovery plan.</p>
+            <span class="next-lock">Available after analysis</span>
+          </section>
+        </main>
+      </div>
+    </div>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+  </body>
+</html>

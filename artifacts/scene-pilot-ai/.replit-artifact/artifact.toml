@@ -1,0 +1,33 @@
+kind = "web"
+previewPath = "/"
+title = "ScenePilot AI"
+description = "A cinematic Flask web application for uploading screenplays and preparing production analysis, designed for film and television pre-production teams."
+version = "1.0.0"
+id = "artifacts/scene-pilot-ai"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 23917
+
+[services.development]
+run = "python app.py"
+
+[services.production]
+
+[services.production.build]
+args = ["python", "-m", "compileall", "."]
+
+[services.production.run]
+args = ["python", "app.py"]
+
+[services.production.run.env]
+PORT = "23917"
+
+[services.production.health.startup]
+path = "/"
+
+[services.env]
+PORT = "23917"
+BASE_PATH = "/"

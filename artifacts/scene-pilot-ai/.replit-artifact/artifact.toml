@@ -8,7 +8,7 @@ router = "path"
 
 [[services]]
 name = "web"
-paths = [ "/" ]
+paths = ["/"]
 localPort = 23917
 
 [services.development]
@@ -20,7 +20,7 @@ run = "python sdk_runtime.py"
 args = ["python", "-m", "compileall", "."]
 
 [services.production.run]
-args = ["python", "sdk_runtime.py"]
+args = ["python", "artifacts/scene-pilot-ai/sdk_runtime.py"]
 
 [services.production.run.env]
 PORT = "23917"
